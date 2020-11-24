@@ -30,39 +30,58 @@
     width: calc(80% - 10px);
     height: calc(50% - 10px);
     margin: 5px;
-    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
-    cursor: pointer;
     
+    cursor: pointer;
+    position:relative;
+}
+
+.memory-card > .front-face{
+   position: absolute;
+   top: 0;
 }
 
 .front-face,
 .back-face {
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 80px;
   padding: 15px;
   border-radius: 5px;
-  background:yellow;
-  backface-visibility: none;
+  
+  }
+
+.back-face{
+    background-color: crimson;
 }
 
+.hidden {
+   display: none; 
+    
+} 
+
+·show {
+    transform: rotateY(180deg);
+    visibility: visible;
+}
 
 #stats-info { 
     display: flex;
     width: 100vw;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap; 
-    border: 3px solid black; 
+    
     
 }
 
 #stats-info>div{
     border: 3px solid black;
-    width: 80px;
+    border-radius: 0 20%;
+    width: 150px;
     display: flex;
     text-align: center;
     padding: 20px;
 }
 
 h2{
-    font-size: 20px;
+    font-size: 15px;
+    text-align: center;
     };
