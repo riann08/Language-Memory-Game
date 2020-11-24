@@ -42,21 +42,6 @@ function startGame() {
   // console.log( typeof shuffledCards);
 }
 
-//console.log(deckOfCards);
-
-// function checkIfPair(c1, c2) {
-//   moveCounter();
-//   if (
-//     pickedCards[0].getAttribute("data-card-name") ===
-//     pickedCards[1].getAttribute("data-card-name")
-//   );
-//   {
-  
-//   }
-// }
-
-
-
 function isFinished() {
   if ((pickedCards = cards.length / 2)) {
     console.log("¡Enhorabuena!");
@@ -65,32 +50,41 @@ function isFinished() {
 
 const moves = document.querySelector("#moves");
 
+let move = "";
+let finalMove = ""
+
 function moveCounter() {
-  let move = "";
-  move += 1;
-  moves.textContent = `Moves: ${move}`;
+  move ++;
+  if (move % 2 == 0){
+    finalMove = move / 2;
+  }
+  moves.textContent = `Moves: ${finalMove}`;
 }
 
 let pickedCards = [];
 
 function handleClick(evt) {
+
+  this.classList.toggle("flip");
+
   let card = evt.target.parentNode;
   pickedCards.push(card.getAttribute("data-card-name"));
    
-   if (pickedCards.length % 2 == 0); {
+   if (pickedCards.length % 2 === 0); {
      moveCounter();
-    }
-    if (
+
+     if (
       pickedCards[pickedCards.length-1] === pickedCards[pickedCards.length-2]) {
-        console.log ("it´s a match");
+        console.log ("it´s a match"); //insert toggle / add lock cards
      } else {
-       console.log ("it´s not a match");
+       console.log ("it´s not a match");// insert toggle / add timer to show back side
      }
+    }
+    
      console.log(pickedCards);
+     console.log(pickedCards.length % 2 === 0);
   } 
   
-  
-
 function startTimer() {
   let second = 0;
   let minute = 0;
@@ -110,3 +104,10 @@ function startTimer() {
     }
   }, 1000);
 }
+
+// function flipCard() {
+//     cards.classList.toggle("flip");
+//   prompt("hey");
+// }
+
+// flipCard();
