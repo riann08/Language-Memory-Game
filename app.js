@@ -3,6 +3,11 @@ window.addEventListener("load", (event) => {
   startTimer();
 });
 
+let pickedCards = [];
+let matchedCards = 0;
+let cardOne;
+let cardTwo;
+
 //copy all cards to cards array
 
 let card = document.querySelectorAll(".memory-card");
@@ -43,10 +48,13 @@ function startGame() {
 }
 
 function isFinished() {
-  if ((pickedCards = cards.length / 2)) {
-    console.log("¡Enhorabuena!");
+  if ((matchedCards = cards.length / 2)) {
+    return true;
+  } else {
+    return false; 
   }
 }
+
 
 const moves = document.querySelector("#moves");
 
@@ -61,23 +69,25 @@ function moveCounter() {
   moves.textContent = `Moves: ${finalMove}`;
 }
 
-let pickedCards = [];
-
 function handleClick(evt) {
-
   this.classList.toggle("flip");
 
   let card = evt.target.parentNode;
   pickedCards.push(card.getAttribute("data-card-name"));
    
    if (pickedCards.length % 2 === 0); {
-     moveCounter();
+     moveCounter(); 
 
      if (
       pickedCards[pickedCards.length-1] === pickedCards[pickedCards.length-2]) {
-        console.log ("it´s a match"); //insert toggle / add lock cards
+        matchedCards ++;
+         if (matchedCards === 10) {
+           //
+         }
+         //insert toggle / add lock cards
      } else {
-       console.log ("it´s not a match");// insert toggle / add timer to show back side
+      
+       console.log("it´s not a match");// insert toggle / add timer to show back side
      }
     }
     
@@ -105,9 +115,7 @@ function startTimer() {
   }, 1000);
 }
 
-// function flipCard() {
-//     cards.classList.toggle("flip");
-//   prompt("hey");
-// }
-
-// flipCard();
+function unmatched() {
+  this.classList.toggle("flip");
+  
+}

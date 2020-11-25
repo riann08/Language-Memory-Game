@@ -14,7 +14,7 @@
   flex-wrap: wrap;
   align-items: center;
   text-align: center;
-  margin: 30px auto ;
+  margin: 80px auto ;
   font-family: 'Nerko One', cursive;
   font-size: 40px;
 }
@@ -35,7 +35,7 @@
   height: calc(80% - 10px);
   margin: 5px;
   cursor: pointer;
-  position: relative;
+  
   -webkit-transition: transform 0.6s;
   transform-style: preserve-3d;
 }
@@ -43,6 +43,7 @@
 .memory-card > .front-face {
   position: absolute;
   top: 0;
+  left: 0;
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   background-color: peachpuff;
@@ -58,6 +59,7 @@
 }
 
 .back-face {
+  position: relative;
   background-color: crimson;
   transform: rotateX(0deg);
   -webkit-transform: rotateX(0deg);
