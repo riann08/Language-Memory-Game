@@ -1,12 +1,21 @@
+//declare variables
+
+let pickedCards = [];
+let pickedDivCard = [];
+let matchedCards = 0;
+let interval;
+let second = 0;
+let minute = 0;
+const timer = document.querySelector("#timer");
+  
+
+
+//on load
+
 window.addEventListener("load", (event) => {
   startGame();
   startTimer();
 });
-
-let pickedCards = [];
-let matchedCards = 0;
-let cardOne;
-let cardTwo;
 
 //copy all cards to cards array
 
@@ -18,8 +27,6 @@ let cards = [...card];
 for (let i = 0; i < cards.length; i++) {
   cards[i].addEventListener("click", handleClick);
 }
-
-//console.log(card);
 
 //Fisher–Yates shuffle
 
@@ -33,8 +40,11 @@ function shuffle(c) {
   return arr;
 }
 
+//copy all shuffled cards to the board
+
 const deckOfCards = document.querySelector("#main-section");
-const shuffledCards = shuffle(cards);
+//const shuffledCards = shuffle(cards);
+const shuffledCards = cards; //test set
 
 function startGame() {
   for (let i = 0; i < shuffledCards.length; i++) {
@@ -42,31 +52,41 @@ function startGame() {
       deckOfCards.appendChild(item);
     });
   }
-
-  // console.log( shuffledCards);
-  // console.log( typeof shuffledCards);
 }
 
 function isFinished() {
-  if ((matchedCards = cards.length / 2)) {
-    return true;
-  } else {
-    return false; 
+  matchedCards++;
+  if (matchedCards === 10) {
+    alert("Great job! You found all matches! Do you want to try again?");
+    stopTimer();
   }
 }
-
 
 const moves = document.querySelector("#moves");
 
 let move = "";
-let finalMove = ""
+let finalMove = "";
 
 function moveCounter() {
-  move ++;
-  if (move % 2 == 0){
+  move++;
+  if (move % 2 == 0) {
     finalMove = move / 2;
   }
-  moves.textContent = `Moves: ${finalMove}`;
+
+  if ((move + 1) % 2 == 0 && move > 2) {
+    
+      let divCard3 = pickedDivCard[pickedDivCard.length - 3];
+      let divCard2 = pickedDivCard[pickedDivCard.length - 2];
+      //let divCard1 = pickedDivCard[pickedDivCard.length - 1];
+
+      setTimeout(() => {
+        divCard3.classList.remove("flip");
+        divCard2.classList.remove("flip");
+      }, 250);
+
+    }
+
+    moves.textContent = `Moves: ${finalMove}`;
 }
 
 function handleClick(evt) {
@@ -74,32 +94,28 @@ function handleClick(evt) {
 
   let card = evt.target.parentNode;
   pickedCards.push(card.getAttribute("data-card-name"));
-   
-   if (pickedCards.length % 2 === 0); {
-     moveCounter(); 
+  pickedDivCard.push(card);
 
-     if (
-      pickedCards[pickedCards.length-1] === pickedCards[pickedCards.length-2]) {
-        matchedCards ++;
-         if (matchedCards === 10) {
-           //
-         }
-         //insert toggle / add lock cards
-     } else {
-      
-       console.log("it´s not a match");// insert toggle / add timer to show back side
-     }
-    }
-    
-     console.log(pickedCards);
-     console.log(pickedCards.length % 2 === 0);
-  } 
-  
+  let card1 = pickedCards[pickedCards.length - 1];
+  let card2 = pickedCards[pickedCards.length - 2];
+
+  if (pickedCards.length % 2 === 0);{
+    moveCounter();
+
+    if (card1 === card2) {
+
+      isFinished();
+
+      setTimeout(() => {
+        alert("Congratulations! You found a match!");
+      }, 300);
+      console.log (matchedCards);
+    } 
+  }
+}
+
 function startTimer() {
-  let second = 0;
-  let minute = 0;
-  const timer = document.querySelector("#timer");
-  let interval;
+  
 
   interval = setInterval(function () {
     timer.innerHTML = minute + " mins " + second + " secs";
@@ -115,7 +131,7 @@ function startTimer() {
   }, 1000);
 }
 
-function unmatched() {
-  this.classList.toggle("flip");
-  
+function stopTimer() {
+  clearInterval(interval);
+  timer.innerHTML =  " 0 min 0 sec";
 }
