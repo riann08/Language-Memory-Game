@@ -41,11 +41,10 @@ function shuffle(c) {
 //copy all shuffled cards to the board
 
 const deckOfCards = document.querySelector("#main-section");
-
 const shuffledCards = shuffle(cards);
 
 //test set
-// const shuffledCards = cards; 
+//const shuffledCards = cards; 
 
 function startGame() {
   for (let i = 0; i < shuffledCards.length; i++) {
@@ -112,10 +111,6 @@ function handleClick(evt) {
     moveCounter();
 
     if (card1 === card2) {
-      setTimeout(() => {
-        alert("Congratulations! You found a match!");
-      }, 300);
-
       isFinished();
     }
   }
