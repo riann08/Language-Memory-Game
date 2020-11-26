@@ -110,4 +110,13 @@ body{
   font-family: 'Nerko One', cursive;
   font-size: 18px;
 }
-/* 
+
+.heart {color:#e25555;}
+
+footer {
+  font-size: 14px;
+  display: flex;
+  align-self: auto;
+  justify-content: center;
+  font-family: 'Nerko One', cursive;
+}
