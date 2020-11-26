@@ -37,6 +37,7 @@ body{
   width: auto;
   margin: 50px 400px;
   justify-content: center;
+  align-items: center;
   font-size: 10px;
 }
 
@@ -68,6 +69,13 @@ body{
   -webkit-backface-visibility: hidden;
 }
 
+.front-face .block{
+  width: 100px;
+  height: 80px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
 .back-face {
   position: relative;
   background-color: rgb(35, 141, 177);
@@ -83,6 +91,7 @@ body{
   -webkit-transform: rotateY(180deg);
   visibility: visible;
 }
+
 
 #stats-info {
   display: flex;
@@ -101,13 +110,13 @@ body{
   font-family: 'Nerko One', cursive;
   font-size: 18px;
 }
-/* 
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 400px;
-  max-height: 100%;
-} */
+
+.heart {color:#e25555;}
+
+footer {
+  font-size: 14px;
+  display: flex;
+  align-self: auto;
+  justify-content: center;
+  font-family: 'Nerko One', cursive;
+}
