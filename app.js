@@ -7,8 +7,6 @@ let interval;
 let second = 0;
 let minute = 0;
 const timer = document.querySelector("#timer");
-  
-
 
 //on load
 
@@ -57,15 +55,20 @@ function startGame() {
 function isFinished() {
   matchedCards++;
   if (matchedCards === 10) {
-    alert("Great job! You found all matches! Do you want to try again?");
+    setTimeout(() => {
+      alert("Great job! You found all matches! Do you want to try again?");
+    }, 350);
     stopTimer();
+    moves = 0;
+    moves.textContent = `Moves: ${finalMove}`;
+    startGame();
   }
 }
 
 const moves = document.querySelector("#moves");
 
-let move = "";
-let finalMove = "";
+let move = 0;
+let finalMove = 0;
 
 function moveCounter() {
   move++;
@@ -74,19 +77,17 @@ function moveCounter() {
   }
 
   if ((move + 1) % 2 == 0 && move > 2) {
-    
-      let divCard3 = pickedDivCard[pickedDivCard.length - 3];
-      let divCard2 = pickedDivCard[pickedDivCard.length - 2];
-      //let divCard1 = pickedDivCard[pickedDivCard.length - 1];
+    let divCard3 = pickedDivCard[pickedDivCard.length - 3];
+    let divCard2 = pickedDivCard[pickedDivCard.length - 2];
+    //let divCard1 = pickedDivCard[pickedDivCard.length - 1];
 
-      setTimeout(() => {
-        divCard3.classList.remove("flip");
-        divCard2.classList.remove("flip");
-      }, 250);
+    setTimeout(() => {
+      divCard3.classList.remove("flip");
+      divCard2.classList.remove("flip");
+    }, 250);
+  }
 
-    }
-
-    moves.textContent = `Moves: ${finalMove}`;
+  moves.textContent = `Moves: ${finalMove}`;
 }
 
 function handleClick(evt) {
@@ -99,24 +100,28 @@ function handleClick(evt) {
   let card1 = pickedCards[pickedCards.length - 1];
   let card2 = pickedCards[pickedCards.length - 2];
 
-  if (pickedCards.length % 2 === 0);{
+  if (pickedCards.length % 2 === 0);
+  {
     moveCounter();
 
     if (card1 === card2) {
-
-      isFinished();
-
       setTimeout(() => {
         alert("Congratulations! You found a match!");
       }, 300);
-      console.log (matchedCards);
-    } 
+
+      console.log(pickedCards);
+      console.log(card1);
+      console.log(card2);
+
+
+      isFinished();
+
+      console.log(matchedCards);
+    }
   }
 }
 
 function startTimer() {
-  
-
   interval = setInterval(function () {
     timer.innerHTML = minute + " mins " + second + " secs";
     second++;
@@ -133,5 +138,4 @@ function startTimer() {
 
 function stopTimer() {
   clearInterval(interval);
-  timer.innerHTML =  " 0 min 0 sec";
 }
